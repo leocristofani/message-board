@@ -1,18 +1,25 @@
+import { useState } from "react";
 import { IconButton, Snackbar } from "@material-ui/core";
 
-import { useCallback, useState } from "react";
+import { Message, MessagePriority } from "../../types";
+import { useLatestMessage } from "../../providers/MessagesStateProvider";
 
 export default function LatestErrorMessageSnackbar() {
-  const [open, setOpen] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<Message | null>(null);
 
-  const onClose = useCallback(() => {
-    setOpen(false);
-  }, []);
+  const resetErrorMessage = () => {
+    setErrorMessage(null);
+  };
+
+  useLatestMessage({
+    onMessage: setErrorMessage,
+    priority: MessagePriority.Error,
+  });
 
   return (
     <Snackbar
-      message="Here's an error message :("
-      open={open}
+      message={errorMessage?.message}
+      open={!!errorMessage}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",
@@ -21,13 +28,13 @@ export default function LatestErrorMessageSnackbar() {
         <IconButton
           size="small"
           color="inherit"
-          onClick={onClose}
+          onClick={resetErrorMessage}
           aria-label="Close message"
         >
           &times;
         </IconButton>
       }
-      onClose={onClose}
+      onClose={resetErrorMessage}
       autoHideDuration={2000}
     />
   );

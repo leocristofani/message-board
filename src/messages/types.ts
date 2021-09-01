@@ -14,7 +14,3 @@ export interface Message {
   message: string;
   priority: MessagePriority;
 }
-
-export interface MessagesByPriority {
-  [priority: number]: Message[];
-}
