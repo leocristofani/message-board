@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Container } from "@material-ui/core";
 
+import MessageTable from "../MessagesTable";
+import { MessagePriority } from "../../types";
+import MessagesControls from "../MessagesControls";
 import { useMessagesApi } from "../../providers/MessagesApiProvider";
 import { useMessagesState } from "../../providers/MessagesStateProvider";
-
-import LatestErrorMessageSnackbar from "../LatestErrorMessageSnackbar";
-import MessagesControls from "../MessagesControls";
-import MessageTable from "../MessagesTable";
+import LatestPriorityMessageSnackbar from "../LatestPriorityMessageSnackbar";
 
 export default function Messages() {
   const messagesApi = useMessagesApi();
@@ -23,7 +23,7 @@ export default function Messages() {
 
   return (
     <>
-      <LatestErrorMessageSnackbar />
+      <LatestPriorityMessageSnackbar priority={MessagePriority.Error} />
       <Container maxWidth="lg">
         <MessagesControls />
         <MessageTable />

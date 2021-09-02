@@ -1,6 +1,7 @@
 import { Observable } from "rxjs";
 import random from "lodash/random";
 import faker from "faker";
+
 import { Message, MessagePriority } from "../../types";
 
 const observable = new Observable<Message>((subscriber) => {

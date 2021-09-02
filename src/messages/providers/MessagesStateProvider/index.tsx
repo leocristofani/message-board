@@ -1,6 +1,5 @@
 import {
   useState,
-  useRef,
   useEffect,
   useContext,
   createContext,
@@ -93,19 +92,21 @@ export function useMessagesState() {
   return useContext(MessagesStateContext);
 }
 
-export function useLatestMessage(props: {
-  priority: MessagePriority;
-  onMessage: (message: Message) => void;
-}) {
+export function useLatestMessage(priority: MessagePriority) {
   const messagesState = useMessagesState();
-  const prevPriorityMessage = useRef<Message | null>(null);
+  const [message, setMessage] = useState<Message | null>();
 
   useEffect(() => {
-    const priorityMessage = messagesState.getLatest(props.priority);
+    setMessage((prevMessage) => {
+      const latestMessage = messagesState.getLatest(priority);
 
-    if (priorityMessage && priorityMessage !== prevPriorityMessage.current) {
-      prevPriorityMessage.current = priorityMessage;
-      props.onMessage(priorityMessage);
-    }
-  }, [props, messagesState]);
+      if (latestMessage && latestMessage !== prevMessage) {
+        return latestMessage;
+      }
+
+      return prevMessage;
+    });
+  }, [priority, messagesState]);
+
+  return message;
 }
