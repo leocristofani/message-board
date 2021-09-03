@@ -1,9 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import ClearAllMessagesButton from ".";
-
-import { useMessagesState } from "../../providers/MessagesStateProvider";
-jest.mock("../../providers/MessagesStateProvider");
+import useMessagesState from "../../hooks/useMessagesState";
+jest.mock("../../hooks/useMessagesState");
 
 function arrangeTest() {
   return render(<ClearAllMessagesButton />);

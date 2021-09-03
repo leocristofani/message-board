@@ -1,5 +1,6 @@
 import { Button } from "@material-ui/core";
-import { useMessagesState } from "../../providers/MessagesStateProvider";
+
+import useMessagesState from "../../hooks/useMessagesState";
 
 export default function ClearAllMessagesButton() {
   const messagesState = useMessagesState();

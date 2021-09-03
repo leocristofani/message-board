@@ -4,9 +4,9 @@ import { Container } from "@material-ui/core";
 import MessageTable from "../MessagesTable";
 import { MessagePriority } from "../../types";
 import MessagesControls from "../MessagesControls";
-import { useMessagesApi } from "../../providers/MessagesApiProvider";
-import { useMessagesState } from "../../providers/MessagesStateProvider";
 import LatestPriorityMessageSnackbar from "../LatestPriorityMessageSnackbar";
+import useMessagesApi from "../../hooks/useMessagesApi";
+import useMessagesState from "../../hooks/useMessagesState";
 
 export default function Messages() {
   const messagesApi = useMessagesApi();

@@ -1,10 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useContext,
-  createContext,
-  ReactNode,
-} from "react";
+import { useState, createContext, ReactNode } from "react";
 
 import { Message, MessagePriority } from "../../types";
 
@@ -24,10 +18,11 @@ const defaultValue: MessagesStateContextValue = {
   getLatest: (_: MessagePriority) => null,
 };
 
-const MessagesStateContext = createContext(defaultValue);
+export const MessagesStateContext = createContext(defaultValue);
 
 interface MessagesStateProviderProps {
   children: ReactNode;
+  initialMessages?: Message[];
 }
 
 export interface MessagesByPriority {
@@ -38,7 +33,9 @@ export interface MessagesByPriority {
 }
 
 export function MessagesStateProvider(props: MessagesStateProviderProps) {
-  const [messages, setMessages] = useState<MessagesByPriority>({ latest: {} });
+  const [messages, setMessages] = useState<MessagesByPriority>(() =>
+    loadInitialMessages(props.initialMessages || [])
+  );
 
   const get = (priority: MessagePriority) => messages[priority] || [];
 
@@ -88,25 +85,21 @@ export function MessagesStateProvider(props: MessagesStateProviderProps) {
   );
 }
 
-export function useMessagesState() {
-  return useContext(MessagesStateContext);
-}
-
-export function useLatestMessage(priority: MessagePriority) {
-  const messagesState = useMessagesState();
-  const [message, setMessage] = useState<Message | null>();
-
-  useEffect(() => {
-    setMessage((prevMessage) => {
-      const latestMessage = messagesState.getLatest(priority);
-
-      if (latestMessage && latestMessage !== prevMessage) {
-        return latestMessage;
+/**
+ * Helper function that transforms a message array into an object
+ * that maps message priority to list of respective messages
+ * or Message[] -> MessagesByPriority
+ */
+function loadInitialMessages(initialMessages: Message[]) {
+  return initialMessages.reduce(
+    (acc: MessagesByPriority, { message, priority }: Message) => {
+      if (!acc[priority]) {
+        acc[priority] = [];
       }
+      acc[priority].push({ message, priority });
 
-      return prevMessage;
-    });
-  }, [priority, messagesState]);
-
-  return message;
+      return acc;
+    },
+    { latest: {} }
+  );
 }

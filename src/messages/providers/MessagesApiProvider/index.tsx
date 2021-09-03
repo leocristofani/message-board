@@ -1,4 +1,4 @@
-import { useRef, useState, ReactNode, useContext, createContext } from "react";
+import { useRef, useState, createContext, ReactNode } from "react";
 
 import { Message } from "../../types";
 import generateMockMessages from "../../mocks/MessagesApiMock";
@@ -17,10 +17,11 @@ const defaultValue: MessagesApiContextValue = {
   stopped: true,
 };
 
-const MessagesApiContext = createContext(defaultValue);
+export const MessagesApiContext = createContext(defaultValue);
 
 interface MessagesApiProviderProps {
   children: ReactNode;
+  generateMessages?: (callback: OnMessage) => () => void;
 }
 
 export function MessagesApiProvider(props: MessagesApiProviderProps) {
@@ -33,7 +34,9 @@ export function MessagesApiProvider(props: MessagesApiProviderProps) {
     }
 
     setStopped(false);
-    unsubscribe.current = generateMockMessages(onMessage);
+    unsubscribe.current = props.generateMessages
+      ? props.generateMessages(onMessage)
+      : generateMockMessages(onMessage);
   };
 
   const stop = () => {
@@ -50,8 +53,4 @@ export function MessagesApiProvider(props: MessagesApiProviderProps) {
       {props.children}
     </MessagesApiContext.Provider>
   );
-}
-
-export function useMessagesApi() {
-  return useContext(MessagesApiContext);
 }

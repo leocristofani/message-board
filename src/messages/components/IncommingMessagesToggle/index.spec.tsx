@@ -1,9 +1,8 @@
 import { screen, render, fireEvent } from "@testing-library/react";
 
 import IncommingMessagesToggle from ".";
-
-import { useMessagesApi } from "../../providers/MessagesApiProvider";
-jest.mock("../../providers/MessagesApiProvider");
+import useMessagesApi from "../../hooks/useMessagesApi";
+jest.mock("../../hooks/useMessagesApi");
 
 function arrangeTest() {
   return render(<IncommingMessagesToggle />);

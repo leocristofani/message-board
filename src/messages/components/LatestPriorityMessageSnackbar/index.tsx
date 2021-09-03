@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IconButton, Snackbar } from "@material-ui/core";
 
 import { MessagePriority } from "../../types";
-import { useLatestMessage } from "../../providers/MessagesStateProvider";
+import useLatestMessage from "../../hooks/useLatestMessage";
 
 export interface LatestPriorityMessageSnackbarProps {
   priority: MessagePriority;

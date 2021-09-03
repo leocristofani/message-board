@@ -10,9 +10,8 @@ import LatestPriorityMessageSnackbar, {
   LatestPriorityMessageSnackbarProps,
 } from ".";
 import { Message, MessagePriority } from "../../types";
-
-import { useLatestMessage } from "../../providers/MessagesStateProvider";
-jest.mock("../../providers/MessagesStateProvider");
+import useLatestMessage from "../../hooks/useLatestMessage";
+jest.mock("../../hooks/useLatestMessage");
 
 const defaultProps: LatestPriorityMessageSnackbarProps = {
   priority: MessagePriority.Error,

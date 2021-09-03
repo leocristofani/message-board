@@ -2,7 +2,7 @@ import { Grid } from "@material-ui/core";
 
 import { MessagePriority } from "../../types";
 import MessagesColumn from "../MessagesColumn";
-import { useMessagesState } from "../../providers/MessagesStateProvider";
+import useMessagesState from "../../hooks/useMessagesState";
 
 export default function MessageTable() {
   const messagesState = useMessagesState();

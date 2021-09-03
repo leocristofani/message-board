@@ -3,14 +3,12 @@ import { screen, render } from "@testing-library/react";
 
 import Messages from ".";
 import { MessagePriority } from "../../types";
-
-import { useMessagesApi } from "../../providers/MessagesApiProvider";
-import {
-  useLatestMessage,
-  useMessagesState,
-} from "../../providers/MessagesStateProvider";
-jest.mock("../../providers/MessagesApiProvider");
-jest.mock("../../providers/MessagesStateProvider");
+import useMessagesApi from "../../hooks/useMessagesApi";
+import useMessagesState from "../../hooks/useMessagesState";
+import useLatestMessage from "../../hooks/useLatestMessage";
+jest.mock("../../hooks/useMessagesApi");
+jest.mock("../../hooks/useMessagesState");
+jest.mock("../../hooks/useLatestMessage");
 
 function arrangeTest() {
   return render(<Messages />);

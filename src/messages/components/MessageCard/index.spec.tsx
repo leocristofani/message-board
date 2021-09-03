@@ -3,9 +3,8 @@ import { screen, render, fireEvent } from "@testing-library/react";
 
 import MessageCard, { MessageCardProps } from ".";
 import { MessagePriority } from "../../types";
-
-import { useMessagesState } from "../../providers/MessagesStateProvider";
-jest.mock("../../providers/MessagesStateProvider");
+import useMessagesState from "../../hooks/useMessagesState";
+jest.mock("../../hooks/useMessagesState");
 
 const defaultProps: MessageCardProps = {
   message: {

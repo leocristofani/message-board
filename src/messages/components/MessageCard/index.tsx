@@ -9,7 +9,7 @@ import {
 
 import { Message } from "../../types";
 import { prioritySettingsMap } from "../../settings";
-import { useMessagesState } from "../../providers/MessagesStateProvider";
+import useMessagesState from "../../hooks/useMessagesState";
 
 export interface MessageCardProps {
   message: Message;

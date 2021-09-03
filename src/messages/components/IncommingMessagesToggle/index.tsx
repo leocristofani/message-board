@@ -1,7 +1,7 @@
 import { Button } from "@material-ui/core";
 
-import { useMessagesApi } from "../../providers/MessagesApiProvider";
-import { useMessagesState } from "../../providers/MessagesStateProvider";
+import useMessagesApi from "../../hooks/useMessagesApi";
+import useMessagesState from "../../hooks/useMessagesState";
 
 export default function IncommingMessagesToggle() {
   const messagesApi = useMessagesApi();
