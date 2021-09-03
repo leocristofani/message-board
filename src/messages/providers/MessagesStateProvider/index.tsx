@@ -49,7 +49,7 @@ export function MessagesStateProvider(props: MessagesStateProviderProps) {
         nextMessages[message.priority] = [];
       }
 
-      nextMessages[message.priority].push(message);
+      nextMessages[message.priority].unshift(message);
       nextMessages.latest[message.priority] = message;
 
       return nextMessages;
@@ -96,7 +96,7 @@ function loadInitialMessages(initialMessages: Message[]) {
       if (!acc[priority]) {
         acc[priority] = [];
       }
-      acc[priority].push({ message, priority });
+      acc[priority].unshift({ message, priority });
 
       return acc;
     },

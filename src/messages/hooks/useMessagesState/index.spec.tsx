@@ -65,8 +65,13 @@ describe("useMessagesState", () => {
     expect(result.current.getLatest(MessagePriority.Info)).toEqual(infoMessage);
   });
 
-  it("adds a message", () => {
+  it("adds a message in the correct order", () => {
     const infoMessage: Message = {
+      message: faker.lorem.sentence(),
+      priority: MessagePriority.Info,
+    };
+
+    const infoMessage2: Message = {
       message: faker.lorem.sentence(),
       priority: MessagePriority.Info,
     };
@@ -75,9 +80,13 @@ describe("useMessagesState", () => {
 
     act(() => {
       result.current.add(infoMessage);
+      result.current.add(infoMessage2);
     });
 
-    expect(result.current.get(MessagePriority.Info)).toEqual([infoMessage]);
+    expect(result.current.get(MessagePriority.Info)).toEqual([
+      infoMessage2,
+      infoMessage,
+    ]);
   });
 
   it("removes a message", () => {
