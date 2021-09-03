@@ -32,6 +32,7 @@ export default function MessageCard(props: MessageCardProps) {
         <CardActions className={styles.actions}>
           <Button
             size="small"
+            className={styles.clearButton}
             onClick={() => messagesState.remove(props.message)}
           >
             Clear

@@ -13,8 +13,13 @@ const styles = makeStyles<Theme, StyleProps>((theme) => ({
     paddingBottom: 0,
   },
   actions: {
+    paddingRight: 0,
+    paddingLeft: 0,
     display: "block",
     textAlign: "right",
+  },
+  clearButton: {
+    textTransform: "none",
   },
 }));
 
