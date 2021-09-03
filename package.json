@@ -1,29 +1,32 @@
 {
-  "name": "nuffsaid.com-react-coding-challange",
-  "description": "nuffsaid.com react coding challange",
+  "name": "message-board",
+  "description": "Message Board",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "lodash": "^4.17.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rxjs": "^7.3.0",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "faker": "^5.5.3",
+    "react-scripts": "4.0.3",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@types/faker": "^5.5.8",
+    "@types/lodash": "^4.14.172",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "faker": "^5.5.3",
-    "lodash": "^4.17.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "rxjs": "^7.3.0",
-    "styled-components": "^5.3.1",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10"
   },
-  "author": "nuffsaid.com",
-  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -52,11 +55,5 @@
       "**/src/**/*.js",
       "!**/__tests__/**"
     ]
-  },
-  "repository": "git@gitlab.com:arnab8/nuffsaid-frontend-coding-challenge.git",
-  "devDependencies": {
-    "@testing-library/react-hooks": "^7.0.2",
-    "@types/faker": "^5.5.8",
-    "@types/lodash": "^4.14.172"
   }
 }
